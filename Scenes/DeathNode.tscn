@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpgf1yh6i13qt"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/DeathNode.gd" id="1_43qkw"]
+[ext_resource type="SpriteFrames" uid="uid://wjtqkh32fhei" path="res://Art/PlayerExplode.tres" id="2_vtx3m"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/DeathAnimation.gd" id="3_vj3n4"]
+
+[node name="DeathNode" type="Node2D"]
+script = ExtResource("1_43qkw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6.99997, 6.10352e-05)
+scale = Vector2(0.495833, 0.49537)
+sprite_frames = ExtResource("2_vtx3m")
+animation = &"Explode"
+autoplay = "Explode"
+script = ExtResource("3_vj3n4")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]

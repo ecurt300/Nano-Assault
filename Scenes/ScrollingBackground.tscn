@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6xrx4s8mxawd"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/ScrollingBackground.gd" id="1_ydda6"]
+[ext_resource type="PackedScene" uid="uid://b43j5id1hhr4o" path="res://Scenes/BloodWall.tscn" id="2_b8ur7"]
+[ext_resource type="Texture2D" uid="uid://q7y03chejfpy" path="res://Art/Level/Blood Organ Texture.png" id="4_g20hc"]
+[ext_resource type="PackedScene" uid="uid://ckqai5w2k5d5w" path="res://Scenes/RightPlaque.tscn" id="4_rwcba"]
+
+[sub_resource type="GDScript" id="GDScript_mqt5f"]
+script/source = "extends ParallaxLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="ScrollingBackground" type="ParallaxBackground"]
+rotation = 0.0145778
+scale = Vector2(1, 1)
+transform = Transform2D(0.999894, 0.0145773, -0.0145773, 0.999894, 0, 0)
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_ydda6")
+
+[node name="BloodOrganTexture" type="ParallaxLayer" parent="."]
+position = Vector2(582.499, 441.556)
+rotation = -0.032848
+scale = Vector2(1, 2.07954)
+motion_scale = Vector2(1, 0.5)
+motion_offset = Vector2(0, 10)
+motion_mirroring = Vector2(0, 894)
+script = SubResource("GDScript_mqt5f")
+
+[node name="BloodWall" parent="BloodOrganTexture" instance=ExtResource("2_b8ur7")]
+position = Vector2(-584.584, 202.319)
+rotation = 0.0174533
+
+[node name="BloodOrganTexture2" type="Sprite2D" parent="BloodOrganTexture"]
+position = Vector2(-16.0256, 8.95381)
+rotation = 0.0174533
+texture = ExtResource("4_g20hc")
+
+[node name="BloodWall3" parent="BloodOrganTexture" instance=ExtResource("2_b8ur7")]
+position = Vector2(588.322, 235.692)
+rotation = -3.10668
+
+[node name="AnimatedSprite2D" parent="BloodOrganTexture/BloodWall3" index="0"]
+obstacle = ExtResource("4_rwcba")
+
+[node name="BloodWall2" parent="BloodOrganTexture" instance=ExtResource("2_b8ur7")]
+position = Vector2(-580.163, -291.67)
+rotation = 0.0174533
+
+[node name="BloodWall4" parent="BloodOrganTexture" instance=ExtResource("2_b8ur7")]
+position = Vector2(592.744, -258.298)
+rotation = -3.10668
+
+[node name="AnimatedSprite2D" parent="BloodOrganTexture/BloodWall4" index="0"]
+obstacle = ExtResource("4_rwcba")
+
+[editable path="BloodOrganTexture/BloodWall"]
+[editable path="BloodOrganTexture/BloodWall3"]
+[editable path="BloodOrganTexture/BloodWall2"]
+[editable path="BloodOrganTexture/BloodWall4"]

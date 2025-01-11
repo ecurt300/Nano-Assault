@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckqai5w2k5d5w"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/Mover.gd" id="1_2ve5h"]
+[ext_resource type="Texture2D" uid="uid://bb1dcyb8b337q" path="res://Art/Level/BloodStream/CPlaqueBig.png" id="2_4qv80"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_naqox"]
+radius = 140.0
+height = 394.0
+
+[node name="LeftPlaque" type="Area2D"]
+script = ExtResource("1_2ve5h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-63, 29)
+shape = SubResource("CapsuleShape2D_naqox")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-62, -131)
+scale = Vector2(6.55, 3.95)
+
+[node name="CPlaqueBig" type="Sprite2D" parent="."]
+position = Vector2(23, 29)
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_4qv80")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

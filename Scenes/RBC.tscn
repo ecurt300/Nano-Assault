@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://cufsikpis3ji"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/RBC.gd" id="1_kk6tk"]
+[ext_resource type="Texture2D" uid="uid://d2m8eipvjhkfl" path="res://Scenes/RBC1.png" id="1_mtdit"]
+[ext_resource type="Texture2D" uid="uid://bauojse3aeiw0" path="res://Art/Level/BloodStream/Red Blood Cells/RBC2.png" id="2_x6tjh"]
+[ext_resource type="Texture2D" uid="uid://drohiv5hyr55b" path="res://Art/Level/BloodStream/Red Blood Cells/RBC3.png" id="3_r2e74"]
+[ext_resource type="Texture2D" uid="uid://47tn08fxpsq4" path="res://Art/Level/BloodStream/Red Blood Cells/RBC4.png" id="4_p0tc6"]
+[ext_resource type="Texture2D" uid="uid://wvxtokhyno70" path="res://Art/Level/BloodStream/Red Blood Cells/RBC5.png" id="5_xbjv6"]
+[ext_resource type="Texture2D" uid="uid://b3juwnm0emfif" path="res://Art/Level/BloodStream/Red Blood Cells/RBC6.png" id="6_jync5"]
+[ext_resource type="Texture2D" uid="uid://btkc6cu7h60vk" path="res://Art/Level/BloodStream/Red Blood Cells/RBC7.png" id="7_ei27q"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/AnimationDefault.gd" id="9_dyf5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6x0q5"]
+radius = 30.4138
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_seq1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mtdit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_x6tjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r2e74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p0tc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xbjv6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jync5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ei27q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="RBC" type="Area2D"]
+script = ExtResource("1_kk6tk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6x0q5")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_seq1c")
+frame = 3
+frame_progress = 0.466277
+script = ExtResource("9_dyf5f")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="PulseTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="PulseTimer" to="." method="_on_pulse_timer_timeout"]

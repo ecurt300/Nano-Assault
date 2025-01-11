@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bopubhmhtjp34"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/Enemy.gd" id="1_adv3g"]
+[ext_resource type="Texture2D" uid="uid://ceigwm4kyv50h" path="res://BacteriaEnemy0.png" id="2_6l1g4"]
+[ext_resource type="PackedScene" uid="uid://i8l7d5kcycnf" path="res://Scenes/EnemyDeathNode.tscn" id="2_8p71p"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/Weapons.gd" id="2_n62dt"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/WeaponGenericBasic.gd" id="3_2sbu2"]
+[ext_resource type="PackedScene" uid="uid://c4r0ap3sfek25" path="res://Scenes/EnemyBullet.tscn" id="6_qa40w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iucqc"]
+size = Vector2(31, 45)
+
+[node name="Enemy" type="Area2D"]
+z_index = 1
+script = ExtResource("1_adv3g")
+death_node = ExtResource("2_8p71p")
+
+[node name="TestImage" type="Sprite2D" parent="."]
+position = Vector2(15, 18.9531)
+scale = Vector2(0.145866, 0.11305)
+texture = ExtResource("2_6l1g4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14.5, 22.5)
+shape = SubResource("RectangleShape2D_iucqc")
+
+[node name="Weapons" type="Node2D" parent="."]
+position = Vector2(15, 56)
+rotation = 3.14159
+script = ExtResource("2_n62dt")
+
+[node name="Gun" type="Node2D" parent="Weapons"]
+position = Vector2(1.00016, -65)
+script = ExtResource("3_2sbu2")
+projectile = ExtResource("6_qa40w")
+
+[node name="ShootTimer" type="Timer" parent="Weapons"]
+wait_time = 3.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Weapons/ShootTimer" to="Weapons" method="_on_shoot_timer_timeout"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=3 uid="uid://b43j5id1hhr4o"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/AnimationDefault.gd" id="1_40nc3"]
+[ext_resource type="Texture2D" uid="uid://bdipfxvs1372g" path="res://Art/Level/BloodStream/WallPulse0.png" id="2_aj3a2"]
+[ext_resource type="Texture2D" uid="uid://cb00uxr7km8qc" path="res://Art/Level/BloodStream/WallPulse1.png" id="3_bburw"]
+[ext_resource type="Texture2D" uid="uid://b20rnhhvgsbhn" path="res://Art/Level/BloodStream/WallPulse2.png" id="4_sdusn"]
+[ext_resource type="Texture2D" uid="uid://cgoy6g8vrrkmf" path="res://Art/Level/BloodStream/WallPulse3.png" id="5_prc0e"]
+[ext_resource type="Texture2D" uid="uid://bth885c312bci" path="res://Art/Level/BloodStream/WallPulse4.png" id="6_q3plc"]
+[ext_resource type="Texture2D" uid="uid://u7sqsehqe4oe" path="res://Art/Level/BloodStream/WallPulse5.png" id="7_x3f5a"]
+[ext_resource type="PackedScene" uid="uid://dknesrmh0p5o" path="res://Scenes/Plaque.tscn" id="8_1drg1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbssp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aj3a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bburw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sdusn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_prc0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q3plc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_x3f5a")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BloodWall" type="Node2D"]
+z_index = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(159, 5.64881e-13)
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_kbssp")
+frame = 1
+frame_progress = 0.562772
+script = ExtResource("1_40nc3")
+obstacle = ExtResource("8_1drg1")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="AnimatedSprite2D" method="_on_timer_timeout"]

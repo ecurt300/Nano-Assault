@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b8fl72fkybhb8"]
+
+[node name="GameOverScreen" type="CanvasGroup"]
+z_index = 1
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1156.0
+offset_bottom = 652.0
+
+[node name="ExitGame" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 342.0
+offset_right = 686.0
+offset_bottom = 374.0
+
+[node name="Exit" type="Label" parent="Panel/ExitGame"]
+custom_minimum_size = Vector2(0, 0.125)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = -14.0
+offset_right = 104.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit
+"
+horizontal_alignment = 1
+
+[node name="RestartGame" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = 241.0
+offset_right = 690.0
+offset_bottom = 276.0
+
+[node name="Restart" type="Label" parent="Panel/RestartGame"]
+custom_minimum_size = Vector2(0, 0.125)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -112.5
+offset_top = -12.5
+offset_right = 105.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 128.0
+offset_right = 682.0
+offset_bottom = 151.0
+text = "GameOver"
+horizontal_alignment = 1
+vertical_alignment = 1
